@@ -8,10 +8,28 @@ class Controller:
         # the model, which implements the logic of the program and holds the data
         self._model = model
 
-    def handle_hello(self, e):
-        name = self._view.txt_name.value
-        if name is None or name == "":
-            self._view.create_alert("Inserire il nome")
+    def handleAnalizza(self, e):
+        cMinTxt= self._view._txtInCMin.value
+        if cMinTxt == "":
+            #inserisci!!!
             return
-        self._view.txt_result.controls.append(ft.Text(f"Hello, {name}!"))
-        self._view.update_page()
+        try:
+            cMin = int(cMinTxt)
+        except ValueError:
+            #self._view.txt_result.controls.append()
+            return
+
+        if cMin<=0:
+            #stampa inserisci valore positivo
+            return
+
+        self._model.buildGraph()
+        nNodes, nEdges = self._model.getGraphDetails()
+        #stampa su txt_result
+
+    def handleConnessi(self, e):
+        pass
+
+    def handleCerca(self, e):
+        pass
+
